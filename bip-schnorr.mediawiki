@@ -103,7 +103,7 @@ The following convention is used, with constants as defined for secp256k1:
 ** The function ''point(x)'', where ''x'' is a 33-byte array, returns the point ''P'' for which ''x(P) = int(x[1:33])'' and ''y(P) & 1 = int(x[0:1]) - 0x02)'', or fails if no such point exists. The function  ''point(x)'' is equivalent to the following pseudocode:
 *** Fail if (''x[0:1] ≠ 0x02'' and ''x[0:1] ≠ 0x03'').
 *** Set flag ''odd'' if ''x[0:1] = 0x03''.
-*** Let ''(r, y) = lift_x(x)''; fail if ''lift_x(x)'' fails.
+*** Let ''(r, y) = lift_x(int(x[1:33]))''; fail if ''lift_x(int(x[1:33]))'' fails.
 *** If (flag ''odd'' is set and ''y'' is an even integer) or (flag ''odd'' is not set and ''y'' is an odd integer):
 **** Let ''y = p - y''.
 *** Return ''(r, y)''.
